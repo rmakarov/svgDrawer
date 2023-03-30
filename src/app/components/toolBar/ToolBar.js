@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Drawer, List, ListItem, ListItemButton} from '@mui/material';
+import {Button, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from '@mui/material';
 
 class ToolBar extends Component {
     constructor() {
@@ -34,7 +34,14 @@ class ToolBar extends Component {
                            </ListItemButton>
                            <ListItemButton>
                                line3
+                               <ListItemIcon></ListItemIcon>
+                               <ListItemText>Figure 1</ListItemText>
                            </ListItemButton>
+                           <ListItemButton>
+                               <ListItemIcon></ListItemIcon>
+                               <ListItemText>Figure 2</ListItemText>
+                           </ListItemButton>
+
                        </ListItem>
                    </List>
                 </Drawer>
