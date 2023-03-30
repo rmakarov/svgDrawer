@@ -28,7 +28,11 @@ class ToolBar extends Component {
                        <ListItem>
                            <ListItemButton>
                                <ListItemIcon></ListItemIcon>
-                               <ListItemText>Figurei</ListItemText>
+                               <ListItemText>Figure 1</ListItemText>
+                           </ListItemButton>
+                           <ListItemButton>
+                               <ListItemIcon></ListItemIcon>
+                               <ListItemText>Figure 2</ListItemText>
                            </ListItemButton>
 
                        </ListItem>
