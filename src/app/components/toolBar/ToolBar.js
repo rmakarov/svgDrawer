@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Drawer, List, ListItem, ListItemButton} from '@mui/material';
+import {Box, Button, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from '@mui/material';
 
 class ToolBar extends Component {
     constructor() {
@@ -24,19 +24,42 @@ class ToolBar extends Component {
                     open={isOpen}
                     onClose={this.toggleDrawer}
                 >
-                   <List>
-                       <ListItem>
-                           <ListItemButton>
-                              line1
-                           </ListItemButton>
-                           <ListItemButton>
-                               line2
-                           </ListItemButton>
-                           <ListItemButton>
-                               line3
-                           </ListItemButton>
-                       </ListItem>
-                   </List>
+                   <Box sx={{width: 250}} role="presentation"
+                        onClick={this.toggleDrawer}
+                        onKeyDown={this.toggleDrawer}>
+                       <List>
+                           <ListItem>
+                               <ListItemButton>
+                                   line1
+                               </ListItemButton>
+                               <ListItemButton>
+                                   line2
+                               </ListItemButton>
+                               <ListItemButton>
+                                   line3
+                                   <ListItemIcon></ListItemIcon>
+                                   <ListItemText>Figure 1</ListItemText>
+                               </ListItemButton>
+                               <ListItemButton>
+                                   <ListItemIcon></ListItemIcon>
+                                   <ListItemText>Figure 2</ListItemText>
+                               </ListItemButton>
+
+                           </ListItem>
+                           <ListItem>
+                               <ListItemButton>
+                                   <ListItemIcon></ListItemIcon>
+                                   <ListItemText>Figure 1</ListItemText>
+                               </ListItemButton>
+                           </ListItem>
+                           <ListItem>
+                               <ListItemButton>
+                                   <ListItemIcon></ListItemIcon>
+                                   <ListItemText>Figure 2</ListItemText>
+                               </ListItemButton>
+                           </ListItem>
+                       </List>
+                   </Box>
                 </Drawer>
             </>
 
