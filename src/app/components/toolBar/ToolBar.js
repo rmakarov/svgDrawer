@@ -32,19 +32,28 @@ class ToolBar extends Component {
                                <ListItemButton>
                                    line1
                                </ListItemButton>
+                           </ListItem>
+                           <ListItem>
                                <ListItemButton>
                                    line2
                                </ListItemButton>
+                           </ListItem>
+                           <ListItem>
                                <ListItemButton>
                                    line3
+                               </ListItemButton>
+                           </ListItem>
+                           <ListItem>
+                               <ListItemButton>
                                    <ListItemIcon></ListItemIcon>
                                    <ListItemText>Figure 1</ListItemText>
                                </ListItemButton>
+                           </ListItem>
+                           <ListItem>
                                <ListItemButton>
                                    <ListItemIcon></ListItemIcon>
                                    <ListItemText>Figure 2</ListItemText>
                                </ListItemButton>
-
                            </ListItem>
                            <ListItem>
                                <ListItemButton>
