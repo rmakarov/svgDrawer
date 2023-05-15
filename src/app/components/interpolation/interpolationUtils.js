@@ -1,10 +1,11 @@
 const FREQUENCY = 6;
 const SPEED = Math.round(1000 / FREQUENCY);
-const DESCENDING_PARAMETER = 0.3
+const DESCENDING_PARAMETER = 1
 const START_X = 82
 const START_Y = 101
 const END_DROP_Y = 137
 let SVG;
+let wavesContainer = []
 
 function scaleBar(bar, height, yPos ) {
     bar.setAttribute("height", height - DESCENDING_PARAMETER);
@@ -17,7 +18,6 @@ function moveDrop(drop, posY,){
     drop.setAttribute('cy', posY+1)
     const newPosY =  Number(drop.getAttribute('cy'))
     if(newPosY > END_DROP_Y){
-        console.log('moveDrop svg: ', SVG);
         SVG.removeChild(drop)
         createAndMoveWaves();
         return;
@@ -40,18 +40,22 @@ function createAndMoveDrop () {
 //*********************WAVE ANIMATION************************************//
 function createAndMoveWaves() {
     var wave1 = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+    wave1.setAttribute('id', `wave_${wavesContainer.length}`)
     wave1.setAttribute('r', 1)
     wave1.setAttribute('cx', START_X)
     wave1.setAttribute('cy', END_DROP_Y)
     wave1.setAttribute('fill', '#00c9df')
     SVG.appendChild(wave1)
+    wavesContainer.push(wave1)
 
     var wave2 = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+    wave2.setAttribute('id', `wave_${wavesContainer.length}`)
     wave2.setAttribute('r', 1)
     wave2.setAttribute('cx', START_X)
     wave2.setAttribute('cy', END_DROP_Y)
     wave2.setAttribute('fill', '#00c9df')
     SVG.appendChild(wave2)
+    wavesContainer.push(wave2)
 
     const posWave1X =  Number(wave1.getAttribute('cx'))
     const posWave2X =  Number(wave2.getAttribute('cx'))
@@ -73,16 +77,42 @@ function moveWaves(wave1, wave2, posWave1X, posWave2X){
 function moveBackWaves(wave1, wave2, posWave1X, posWave2X) {
     wave1.setAttribute('cx', posWave1X - 1)
     wave2.setAttribute('cx', posWave2X + 1)
+    higlightWaves(wave1)
+    higlightWaves(wave2)
     const newWave1PosX = Number(wave1.getAttribute('cx'))
     const newWave2PosX = Number(wave2.getAttribute('cx'))
     if (newWave1PosX < 105) {
+        removeWaveFromContainer(wave1)
         SVG.removeChild(wave1)
+        removeWaveFromContainer(wave2)
         SVG.removeChild(wave2)
         return;
     }
     setTimeout(() => {
         moveBackWaves(wave1, wave2, newWave1PosX, newWave2PosX)
     }, 100)
+}
+
+function higlightWaves(movedWave){
+    let x = movedWave.getAttribute('cx')
+    let id = movedWave.getAttribute('id')
+    for(let i = 0; i < wavesContainer.length; i++){
+        let wave = wavesContainer[i];
+        if(x === wave.getAttribute('cx') && wave.getAttribute('id') !== id){
+            movedWave.setAttribute('fill', '#ff5555')
+            movedWave.setAttribute('r', 1.3)
+            setTimeout(() => {
+                movedWave.setAttribute('fill', '#00c9df')
+                movedWave.setAttribute('r', 1)
+            }, 100)
+        }
+    }
+}
+
+function removeWaveFromContainer(wave) {
+    wavesContainer = wavesContainer.filter((item) => {
+        return item.getAttribute('id') !== wave.getAttribute('id')
+    })
 }
 //*********************END WAVE ANIMATION************************************//
 
@@ -101,7 +131,6 @@ function scaleBarByFrequency (bar) {
 
 export const calculationBar = () => {
     SVG = document.getElementById('interpolationArea')
-    console.log('SVG: ', SVG)
     const bar  = document.getElementById('bar').querySelector('rect')
 
     scaleBarByFrequency(bar)
