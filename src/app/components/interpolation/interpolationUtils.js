@@ -1,6 +1,6 @@
-const FREQUENCY = 6;
+const FREQUENCY = 1;
 const SPEED = Math.round(1000 / FREQUENCY);
-const DESCENDING_PARAMETER = 1
+const DESCENDING_PARAMETER = 0.3
 const START_X = 82
 const START_Y = 101
 const END_DROP_Y = 137
