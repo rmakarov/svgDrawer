@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
-import {calculationBar} from './interpolationUtils'
 
 class Interpolation extends Component {
-
-    componentDidMount() {
-        calculationBar()
-    }
 
     render(){
         return(
