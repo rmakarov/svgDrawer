@@ -3,16 +3,23 @@ import {Box} from '@mui/material';
 import ToolBar from '../toolBar/ToolBar';
 import Interpolation from '../interpolation/Interpolation'
 import {calculationBar} from '../interpolation/interpolationUtils';
+import {helloWorld} from "../../api/graphql/testApi";
+import {QueryData} from "../graphQL/QueryData";
 
 class Home extends Component {
     constructor() {
         super();
         this.startCalculation = this.startCalculation.bind(this)
+        this.getName = this.getName.bind(this)
     }
 
     startCalculation() {
         console.log('startCalculation');
         calculationBar()
+    }
+
+    getName() {
+        helloWorld()
     }
 
     render() {
@@ -47,13 +54,14 @@ class Home extends Component {
 
                              </td>
                              <td>
-                                <span id="countOfDrops"></span>
+                               <input type="number" id="countOfDrops" defaultValue={10}/>
+                               {/* <span id="countOfDrops"></span>*/}
                              </td>
                              <td>
                                  <input id="expirienceTimer" type="number" defaultValue={10}/>
                              </td>
                              <td>
-                                 <input id="dropFrequency" type="number" defaultValue={1}/>
+                                 <span id="dropFrequency"></span>
                              </td>
                              <td>
 
@@ -64,6 +72,10 @@ class Home extends Component {
                 <div>
                     <button onClick={this.startCalculation}>рассчитать</button>
                 </div>
+            </Box>
+            <Box>
+                <Box></Box>
+                <QueryData/>
             </Box>
         </Box>
     );

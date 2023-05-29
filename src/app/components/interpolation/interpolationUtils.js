@@ -103,9 +103,10 @@ function moveBackWaves(wave1, wave2, posWave1X, posWave2X) {
         SVG.removeChild(wave2)
         if(wavesContainer.length === 0){
             passedTime = 0;
-            console.log('countOfDrops: ', countOfDrops)
-            countOfDropsResult.innerHTML = countOfDrops
-            console.log('countOfDropsResult: ', countOfDropsResult.innerHTML)
+            //console.log('countOfDrops: ', countOfDrops)
+            //countOfDropsResult.innerHTML = countOfDrops
+            document.getElementById('dropFrequency').innerHTML = FREQUENCY
+            //console.log('countOfDropsResult: ', countOfDropsResult.innerHTML)
         }
         return;
     }
@@ -144,7 +145,7 @@ function scaleBarByFrequency (bar) {
     passedTime += SPEED;
     if(passedTime <= expirienceTime) {
         scaleBar(bar, barHeight, barYPos);
-        countOfDrops++;
+        countOfDrops--;
     }else{
         return;
     }
@@ -163,13 +164,14 @@ export const calculationBar = () => {
     SVG = document.getElementById('interpolationArea')
     const bar  = document.getElementById('bar').querySelector('rect')
     expirienceTime = document.getElementById('expirienceTimer').value * 1000
-    countOfDropsResult = document.getElementById('countOfDrops')
-    FREQUENCY =  document.getElementById('dropFrequency').value
+    //countOfDropsResult = document.getElementById('countOfDrops')
+    countOfDrops = document.getElementById('countOfDrops').value
+    console.log('countOfDrops: ', countOfDrops);
+    //FREQUENCY =  document.getElementById('dropFrequency').value
+    FREQUENCY = countOfDrops/expirienceTime * 1000
     console.log('FREQUENCY: ', FREQUENCY)
     SPEED = Math.round(1000/ FREQUENCY);
-    /*if(FREQUENCY > 1 ){
-    SPEED =  Math.round((SPEED/100) * 90)
-}*/
+
     scaleBarByFrequency(bar)
     //startTimer()
 }
