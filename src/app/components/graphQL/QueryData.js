@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
-import {helloWorld} from "../../api/graphql/testApi";
+import React from "react";
+import {helloWorld, getHero, getHeroFriends} from "../../api/graphql/testApi";
 import {Box, Button} from "@mui/material";
 
 
 export function QueryData ()  {
-    let {loading, error, data} =  helloWorld()
+    let {loading, error, data} =  getHero()
     if(error){console.log('error', error)}
     if(loading){console.log('loading', loading)}
     if(data){console.log('data', data)}
