@@ -1,23 +1,17 @@
 import { gql } from 'graphql-tag'
 
 const typeDefs = gql`
-type Track {
-        id: ID!
-        title: String!
-    }
-    type HeroFriends {
-        firstName: String, lastName: String
-    }
     type Hero {
-        firstName: String, lastName: String, friends: [HeroFriends]
-    }
-    type Mutation {
-        addHero(title: String, author: String): Hero
+        id: String, name: String, city: String, age: String
     }
     type Query {
         hello: String
-        hero: Hero
+        heroes: [Hero]
+        hero(name: String!): Hero
+    }
+    type Mutation {
+        addHero(id: String, name: String,  city: String, age: String): Hero,
+        deleteHero(id: String): Hero
     }
 `;
-
 export default typeDefs;

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from './components/home/Home.jsx'
+import Heroes from './components/heroes/Heroes.jsx';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
 
 
 const client = new ApolloClient({
@@ -16,7 +18,8 @@ class App extends Component {
             <ApolloProvider client={client}>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={ <Home />}/>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/heroes" element={<Heroes />} />
                     </Routes>
                 </BrowserRouter>
             </ApolloProvider>
